@@ -1,0 +1,53 @@
+package com.example.program2;
+
+importandroid.os.Bundle;
+importandroid.app.Activity;
+importandroid.view.Menu;
+importandroid.util.*;
+
+publicclassMainActivityextends Activity {
+String tag="You are";
+@Override
+protectedvoidonCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+Log.d(tag,"in the Oncreate() Method");
+    }
+
+publicvoidonStart()
+{
+	super.onStart();
+	Log.d(tag,"in the Oncreate() Method");
+}
+publicvoidonResume()
+{
+	super.onResume();
+	Log.d(tag,"in the onResume() Method");
+}
+
+publicvoidonPause()
+{
+	super.onPause();
+	Log.d(tag,"in the onPause() Method");
+}
+
+publicvoidonStop()
+{
+	super.onStop();
+	Log.d(tag,"in the onStop() Method");
+}
+
+publicvoidonDestroy()
+{
+	super.onDestroy();
+	Log.d(tag,"in the onDestroy() Method");
+}
+
+
+@Override
+publicbooleanonCreateOptionsMenu(Menu menu) {
+// Inflate the menu; this adds items to the action bar if it is present.
+getMenuInflater().inflate(R.menu.main, menu);
+returntrue;
+    }
+    }

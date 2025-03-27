@@ -1,138 +1,90 @@
-// Main_activity.java
-import android.os.Bundle;
+Mainactivity.java
+
+package com.example.program6;  // Change to your actual package name
+
 import android.app.Activity;
-import android.view.View;
-import android.widget.Button;
+import android.os.Bundle;
 import android.widget.RadioButton;
-import android.widget.Toast;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
-public class MainActivity extends Activity {
-
-    private RadioButton select1;
-    private RadioButton select2;
-    private RadioButton select3;
-    private Button resultButton;
+public class MainActivity extends Activity {  
+    private TextView selectedPayment;
+    private RadioGroup radioGroupPayment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);  
+        selectedPayment = (TextView) findViewById(R.id.selectedPayment);
+        radioGroupPayment = (RadioGroup) findViewById(R.id.radioGroupPayment);
 
-        // Initializing RadioButtons
-        select1 = findViewById(R.id.radioButton1);
-        select2 = findViewById(R.id.radioButton2);
-        select3 = findViewById(R.id.radioButton3);
-
-        // Initializing Button
-        resultButton = findViewById(R.id.button1);
-
-        // Set OnClickListener on the Button
-        resultButton.setOnClickListener(new View.OnClickListener() {
+        radioGroupPayment.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                showResult();
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton selectedRadioButton = (RadioButton) findViewById(checkedId);
+                String paymentMethod = selectedRadioButton.getText().toString();
+                selectedPayment.setText("Selected Payment: " + paymentMethod);
             }
         });
-    }
-
-    private void showResult() {
-        String message = null;
-
-        // Checking which RadioButton is selected
-        if (select1.isChecked()) {
-            message = select1.getText().toString();
-        } else if (select2.isChecked()) {
-            message = select2.getText().toString();
-        } else if (select3.isChecked()) {
-            message = select3.getText().toString();
-        }
-
-        // Setting message if no option is selected
-        message = (message == null) ? "You selected nothing" : "You have selected: " + message;
-
-        // Displaying a Toast message
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }
 
 
-/// activity_main.xml
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+
+
+Mainactivity
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:gravity="center">
 
+    <!-- Title -->
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="94dp"
-        android:layout_marginTop="80dp"
-        android:text="@string/TV" />
+        android:text="Select a Payment Method"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:padding="12dp" />
 
-    <RadioButton
-        android:id="@+id/radioButton1"
+    <!-- RadioGroup for Payment Options -->
+    <RadioGroup
+        android:id="@+id/radioGroupPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radioCredit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Credit Card" />
+
+        <RadioButton
+            android:id="@+id/radioDebit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Debit Card" />
+
+        <RadioButton
+            android:id="@+id/radioUPI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UPI" />
+    </RadioGroup>
+
+    <!-- TextView to Show Selected Option -->
+    <TextView
+        android:id="@+id/selectedPayment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        android:text="@string/RB1" />
+        android:text="Payment Not Selected"
+        android:textSize="18sp"
+        android:paddingTop="20dp" />
 
-    <RadioButton
-        android:id="@+id/radioButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/radioButton1"
-        android:layout_below="@+id/radioButton1"
-        android:layout_marginTop="16dp"
-        android:text="@string/RB2" />
-
-    <RadioButton
-        android:id="@+id/radioButton3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/radioButton2"
-        android:layout_below="@+id/radioButton2"
-        android:layout_marginTop="20dp"
-        android:text="@string/RB3" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/radioButton3"
-        android:layout_toRightOf="@+id/radioButton3"
-        android:text="@string/BUT" />
-
-</RelativeLayout>
-
-
-
-
-
-
-
-
-
-//Strings.Xml
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <string name="app_name">aswinradiobox</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="TV">Select the pass out year</string>
-    <string name="RB1">2024</string>
-    <string name="RB2">2025</string>
-    <string name="RB3">2026</string>
-    <string name="BUT">Submit</string>
-
-</resources>
+</LinearLayout>

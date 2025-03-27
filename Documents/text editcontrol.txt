@@ -1,14 +1,16 @@
-Create an android application for TextEdit control
-
 MAINACTIVITY.JAVA
+package com.example.program3aedtext;
 
 import android.os.Bundle;
 import android.app.Activity;
+
 import android.view.View;
 import android.view.View.OnClickListener;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 
 public class MainActivity extends Activity {
 	EditTexteText;
@@ -30,11 +32,10 @@ msg.show();
 
         });
 
-    }
+    }    
 }
 
 ACTIVITY_MAIN.XML
-
 <RelativeLayoutxmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
@@ -75,11 +76,10 @@ android:ems="10"
 android:text="@string/enter_text"android:inputType="text" />
 
 </RelativeLayout>
-
 STRINGS.XML
-
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
 <string name="app_name">Program3AEdTEXT</string>
 <string name="example_edittext">Example showing EditText</string>
 <string name="show_the_text">Show the Text</string>

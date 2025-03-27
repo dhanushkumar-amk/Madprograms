@@ -1,0 +1,109 @@
+package com.example.program4radiobtn;
+
+importandroid.os.Bundle;
+importandroid.app.Activity;
+importandroid.view.View;
+importandroid.widget.Button;
+importandroid.widget.CheckBox;
+importandroid.widget.Toast;
+publicclassMainActivityextends Activity {
+	privateCheckBoxcheckBoxCcpp;
+	privateCheckBoxcheckBoxCsharp;
+	privateCheckBoxcheckBoxJava;
+	private Button buttonShowResult;
+@Override
+protectedvoidonCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+
+this.checkBoxCcpp = (CheckBox) this.findViewById(R.id.checkBox1);
+this.checkBoxCsharp = (CheckBox) this.findViewById(R.id.checkBox2);
+this.checkBoxJava = (CheckBox) this.findViewById(R.id.checkBox3);
+
+this.buttonShowResult = (Button) this.findViewById(R.id.button_showResult);
+
+this.buttonShowResult.setOnClickListener(newView.OnClickListener() {
+@Override
+publicvoidonClick(View v) {
+	showResult();
+            }
+        }); }
+privatevoidshowResult()  {
+        String message = null;
+if(this.checkBoxCcpp.isChecked()) {
+            message =  this.checkBoxCcpp.getText().toString();
+        }
+if(this.checkBoxCsharp.isChecked()) {
+if(message== null)  {
+                message =  this.checkBoxCsharp.getText().toString();
+            } else {
+                message += ", " + this.checkBoxCsharp.getText().toString();
+            }
+        }
+if(this.checkBoxJava.isChecked()) {
+if(message== null)  {
+                message =  this.checkBoxJava.getText().toString();
+            } else {
+                message += ", " + this.checkBoxJava.getText().toString();
+            }
+        }
+        message = message == null? "You select nothing": "You have selected: " + message;
+Toast.makeText(this, message, Toast.LENGTH_LONG).show();    }}
+
+
+
+
+xml:
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:gravity="center"
+    android:background="@android:color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Your Preferred Languages"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingBottom="10dp"/>
+
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="C++"
+        android:textSize="16sp"
+        android:padding="8dp"/>
+
+    <CheckBox
+        android:id="@+id/checkBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="C#"
+        android:textSize="16sp"
+        android:padding="8dp"/>
+
+    <CheckBox
+        android:id="@+id/checkBox3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Java"
+        android:textSize="16sp"
+        android:padding="8dp"/>
+
+    <Button
+        android:id="@+id/button_showResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Result"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:padding="12dp"
+        android:layout_marginTop="20dp"/>
+</LinearLayout>
