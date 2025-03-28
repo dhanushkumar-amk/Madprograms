@@ -49,3 +49,27 @@
         android:text="Status: Not Logged In"
         android:textSize="16sp" />
 </AbsoluteLayout>
+
+
+
+// absolute layout another
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello, Absolute Layout!"
+        android:layout_x="50dp"
+        android:layout_y="100dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click Me"
+        android:layout_x="100dp"
+        android:layout_y="200dp"/>
+
+</AbsoluteLayout>
